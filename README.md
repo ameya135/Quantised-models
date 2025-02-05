@@ -1,8 +1,3 @@
 # Quantised-models
-# Quantised-models
-# Quantised-models
-# Quantised-models
-# Quantised-models
-# Quantised-models
-# Quantised-models
-# Quantised-models
+
+Quantising models used for object detection. 
