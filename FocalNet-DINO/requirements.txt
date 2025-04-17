@@ -3,13 +3,13 @@
 # python>=3.9
 cython
 # COCO API for Python
-git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI&egg=pycocotools
+pycocotools
 submitit
 # PyTorch 1.13.x for Python 3.9 compatibility
 torch>=1.13.1
 torchvision>=0.14.1
 # Panoptic API
-git+https://github.com/cocodataset/panopticapi.git#egg=panopticapi
+panopticapi
 # Scientific computing
 scipy>=1.7.0
 # Utilities
