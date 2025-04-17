@@ -1,0 +1,32 @@
+ninja_required_version = 1.3
+cxx = c++
+nvcc = /opt/rocm/bin/hipcc
+
+cflags = -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O3 -Wall -fPIC -DWITH_ROCM -I/run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/src -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/TH -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/THC -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/THH -I/opt/rocm/include -I/run/media/ameya/Ameya-SSD/IISc/.venv/include -I/home/ameya/.pyenv/versions/3.12.1/include/python3.12 -c
+post_cflags = -fPIC -D__HIP_PLATFORM_AMD__=1 -DUSE_ROCM=1 -DHIPBLAS_V2 -fPIC -D__HIP_PLATFORM_AMD__=1 -DUSE_ROCM=1 -DHIPBLAS_V2 -O3 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=MultiScaleDeformableAttention -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17
+cuda_cflags = -DWITH_ROCM -I/run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/src -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/torch/csrc/api/include -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/TH -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/THC -I/run/media/ameya/Ameya-SSD/IISc/.venv/lib/python3.12/site-packages/torch/include/THH -I/opt/rocm/include -I/run/media/ameya/Ameya-SSD/IISc/.venv/include -I/home/ameya/.pyenv/versions/3.12.1/include/python3.12 -c
+cuda_post_cflags = -fPIC -D__HIP_PLATFORM_AMD__=1 -DUSE_ROCM=1 -DHIPBLAS_V2 -DCUDA_HAS_FP16=1 -D__HIP_NO_HALF_OPERATORS__=1 -D__HIP_NO_HALF_CONVERSIONS__=1 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=MultiScaleDeformableAttention -D_GLIBCXX_USE_CXX11_ABI=1 --offload-arch=gfx900 --offload-arch=gfx906 --offload-arch=gfx908 --offload-arch=gfx90a --offload-arch=gfx942 --offload-arch=gfx1030 --offload-arch=gfx1100 --offload-arch=gfx1101 -fno-gpu-rdc -std=c++17
+cuda_dlink_post_cflags = 
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  command = $nvcc  $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+
+
+build /run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-312/src/cpu/ms_deform_attn_cpu_hip.o: compile /run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/src/cpu/ms_deform_attn_cpu_hip.cpp
+build /run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-312/src/hip/ms_deform_attn_hip.o: cuda_compile /run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/src/hip/ms_deform_attn_hip.hip
+build /run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-312/src/vision_hip.o: compile /run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/src/vision_hip.cpp
+
+
+
+
+
+

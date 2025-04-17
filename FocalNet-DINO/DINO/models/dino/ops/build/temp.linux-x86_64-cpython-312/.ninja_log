@@ -1,0 +1,5 @@
+# ninja log v6
+1	13064	1743667011428823274	/run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-312/src/cpu/ms_deform_attn_cpu_hip.o	11c2a8dfde79cd48
+2	30710	1743667011430905476	/run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-312/src/vision_hip.o	3dfb4b90350fde3d
+89	14731	1744655431076342012	/run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-312/src/cpu/ms_deform_attn_cpu_hip.o	4e73de073c4122bf
+89	34004	1744655431077801470	/run/media/ameya/Ameya-SSD/IISc/FocalNet-DINO/DINO/models/dino/ops/build/temp.linux-x86_64-cpython-312/src/vision_hip.o	dc865cc0d1ee228f
