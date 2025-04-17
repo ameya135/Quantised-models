@@ -12,7 +12,6 @@
 #include <vector>
 
 #include <ATen/ATen.h>
-#include <ATen/hip/HIPContext.h>
 
 
 at::Tensor

@@ -5,9 +5,10 @@ cython
 # COCO API for Python
 pycocotools
 submitit
-# PyTorch 1.13.x for Python 3.9 compatibility
-torch>=1.13.1
-torchvision>=0.14.1
+# PyTorch 1.13.x with CUDA 12.4
+-f https://download.pytorch.org/whl/cu124
+torch==1.13.1+cu124
+torchvision==0.14.1+cu124
 # Panoptic API
 panopticapi
 # Scientific computing
