@@ -3,7 +3,10 @@ import argparse
 import datetime
 import json
 
-
+# Add Python version enforcement
+import sys
+if sys.version_info < (3, 9):
+    raise RuntimeError(f"Python 3.9 or higher is required, you are using {sys.version.split()[0]}")
 
 import random
 import time
@@ -11,9 +14,6 @@ from pathlib import Path
 import os, sys
 from typing import Optional
 from util.get_param_dicts import get_param_dict
-
-
-
 
 from util.logger import setup_logger
 

@@ -1,5 +1,10 @@
 # Copyright (c) 2022 IDEA. All Rights Reserved.
 # ------------------------------------------------------------------------
+# Add Python version enforcement
+import sys
+if sys.version_info < (3, 9):
+    raise RuntimeError(f"Python 3.9 or higher is required, you are using {sys.version.split()[0]}")
+
 import argparse
 import datetime
 import json
